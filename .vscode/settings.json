@@ -1,0 +1,5 @@
+{
+    "editor.formatOnSave": false,
+    "editor.formatOnType": true,
+    "python.defaultInterpreterPath": "/home/daulet/.cache/pypoetry/virtualenvs/company-p9G9XeWa-py3.10/bin/python3"
+}
