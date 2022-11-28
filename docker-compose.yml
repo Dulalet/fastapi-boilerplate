@@ -9,7 +9,9 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
-      - "5458:5432"
+      - "5459:5459"
+    networks:
+      - default
     # healthcheck:
     #   test: [ "CMD-SHELL", "pg_isready -q -U postgres -d ukassav2"]
     #   interval: 5s
@@ -23,7 +25,9 @@ services:
       - POSTGRES_USER=test
       - POSTGRES_DB=ukassa_test
     ports:
-      - 5468:5432
+      - 5469:5469
+    networks:
+      - default
 
   ofd-service:
     build:
@@ -38,12 +42,22 @@ services:
       - DATABASE_TEST_URL=postgresql://test:qwerty@db:5468/ukassa_test
       - BACKEND_CORS_ORIGINS=["http://localhost:3000","http://localhost:8000"]
     expose:
-      - "8013"
+      - "8014"
     volumes:
       - ".:/code"
     ports:
-      - "8013:8000"
-    command: sh -c "uvicorn app.main:app --reload --host 0.0.0.0 --port 8000"
+      - "8014:8014"
+    networks:
+      - default
+      - ukassa
+    command: sh -c "uvicorn app.main:app --reload --host 0.0.0.0 --port 8014"
 
 volumes:
   pgdata:
+
+networks:
+  default:
+    driver: bridge
+  ukassa:
+    driver: bridge
+    name: ukassa
