@@ -24,22 +24,24 @@ services:
       - POSTGRES_PASSWORD=qwerty
       - POSTGRES_USER=test
       - POSTGRES_DB=ukassa_test
+    profiles:
+      - testing
     ports:
       - 5469:5469
     networks:
       - default
 
-  ofd-service:
+  report-service:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: "ofd-service:latest"
-    container_name: "ofd-service"
+    image: "report-service:latest"
+    container_name: "report-service"
     depends_on:
       - "db"
     environment:
-      - DATABASE_URL=postgresql://daulet:qwerty@db:5458/ukassa
-      - DATABASE_TEST_URL=postgresql://test:qwerty@db:5468/ukassa_test
+      - DATABASE_URL=postgresql://daulet:qwerty@db:5459/ukassa
+      - DATABASE_TEST_URL=postgresql://test:qwerty@db:5469/ukassa_test
       - BACKEND_CORS_ORIGINS=["http://localhost:3000","http://localhost:8000"]
     expose:
       - "8014"

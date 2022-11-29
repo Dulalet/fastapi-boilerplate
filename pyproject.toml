@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "ofd"
+name = "report"
 version = "0.1.0"
 description = ""
 authors = ["Daulet <daulet.abduali@gmail.com>"]

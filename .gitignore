@@ -1,0 +1,13 @@
+.vscode
+.mypy_cache
+docker-stack.yml
+.DS_Store
+.env
+.idea
+.todo
+.venv
+venv
+env
+__pycache__
+*/__pycache__
+vault.py
